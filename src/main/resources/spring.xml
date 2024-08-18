@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="dev" class="com.learn.spring_boot.Dev">
+    <bean id="dev" class="com.learn.spring_boot.Dev" autowire="byName">
 
 <!--        setter injection-->
 
@@ -18,12 +18,16 @@
 
 <!--        <property name="laptop" ref="lap1"/>-->
 
-        <constructor-arg index="0" value="16"/>
-        <constructor-arg index="1" ref="lap1"/>
+<!--        <constructor-arg index="0" value="16"/>-->
+<!--        <constructor-arg index="1" ref="lap1"/>-->
+
+<!--        <property name="computer" ref="computer"/>-->
+
     </bean>
 
     <bean id="lap1" class="com.learn.spring_boot.Laptop">
-
     </bean>
+
+    <bean id="computer" class="com.learn.spring_boot.Desktop"/>
 
 </beans>

@@ -4,18 +4,18 @@ package com.learn.spring_boot;
 public class Dev {
 
     private int age;
-    Laptop laptop;
+    Computer computer;
 
     public Dev(){
         System.out.println("dev constructor");
     }
 
     // required for constructor injection
-    public Dev(int age, Laptop laptop){
-        this.age = age;
-        this.laptop = laptop;
-        System.out.println("dev parameterized constructor called");
-    }
+//    public Dev(int age, Laptop laptop){
+//        this.age = age;
+//        this.laptop = laptop;
+//        System.out.println("dev parameterized constructor called");
+//    }
 
     // required for setter injection to work properly
     public void setAge(int age){
@@ -23,16 +23,15 @@ public class Dev {
     }
 
     // required for setter injection
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+
+
+    public Computer getComputer() {
+        return computer;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
-
-
-
 
     public int getAge(){
         return age;
@@ -41,6 +40,6 @@ public class Dev {
 
     public void build(){
         System.out.println("From Dev");
-        laptop.compute();
+        computer.compute();
     }
 }
