@@ -5,6 +5,15 @@ public class Product {
     private String name;
     private int cost;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
+
     public Product(int id, String name, int cost) {
         this.id = id;
         this.name = name;
