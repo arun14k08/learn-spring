@@ -1,8 +1,21 @@
 package com.arun.spring_boot_web.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+
 public class Product {
+
+    @Id
     private int id;
+
     private String name;
+
     private int cost;
 
     @Override
@@ -13,6 +26,8 @@ public class Product {
                 ", cost=" + cost +
                 '}';
     }
+
+    public Product(){}
 
     public Product(int id, String name, int cost) {
         this.id = id;

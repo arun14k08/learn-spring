@@ -1,6 +1,8 @@
 package com.arun.spring_boot_web.servie;
 
 import com.arun.spring_boot_web.model.Product;
+import com.arun.spring_boot_web.repository.ProductRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,48 +13,33 @@ import java.util.stream.Stream;
 
 @Service
 public class ProductService {
-    List<Product> products = new ArrayList<> (Arrays.asList(
-            new Product(101,"mouse", 299),
-            new Product(102,"laptop", 53999),
-            new Product(103, "keyboard", 499)));
+
+    @Autowired
+    ProductRepo productRepo;
+//    List<Product> products = new ArrayList<> (Arrays.asList(
+//            new Product(101,"mouse", 299),
+//            new Product(102,"laptop", 53999),
+//            new Product(103, "keyboard", 499)));
 
     public List<Product> getProducts(){
-        return products;
+        return productRepo.findAll();
     }
 
 
 
     public Product getProductById(int id) {
-        return products
-                .stream()
-                .filter(
-                        (product) -> {
-                    return product.getId() == id; }
-                )
-                .findFirst()
-
-                .orElse(new Product(0, "product not found", 0));
+        return productRepo.findById(id).orElse(new Product());
     }
 
     public void addProduct(Product product) {
-        products.add(product);
+        productRepo.save(product);
     }
 
     public void updateProduct(Product newProduct) {
-        products = products.stream()
-                .map(product -> {
-                    if (product.getId() == newProduct.getId()) {
-                        return newProduct;
-                    }
-                    return product;
-                })
-                .collect(Collectors.toList());
-        System.out.println(products.toString());
+        productRepo.save(newProduct);
     }
 
     public void deleteProduct(int id) {
-        products = products.stream()
-                .filter(product -> product.getId() != id)
-                .collect(Collectors.toList());
+        productRepo.deleteById(id);
     }
 }
